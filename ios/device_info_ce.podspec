@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'device_info_ce'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'A comprehensive Flutter plugin to get detailed device information.'
   s.description      = <<-DESC
 A comprehensive Flutter plugin to get detailed device information without external dependencies.
