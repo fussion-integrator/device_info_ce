@@ -77,9 +77,9 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
       manufacturer: map['manufacturer']?.toString(),
       model: map['model']?.toString(),
       product: map['product']?.toString(),
-      supported32BitAbis: map['supported32BitAbis'] != null ? List<String>.from(map['supported32BitAbis']) : null,
-      supported64BitAbis: map['supported64BitAbis'] != null ? List<String>.from(map['supported64BitAbis']) : null,
-      supportedAbis: map['supportedAbis'] != null ? List<String>.from(map['supportedAbis']) : null,
+      supported32BitAbis: map['supported32BitAbis'] != null && map['supported32BitAbis'] is List ? List<String>.from(map['supported32BitAbis']) : null,
+      supported64BitAbis: map['supported64BitAbis'] != null && map['supported64BitAbis'] is List ? List<String>.from(map['supported64BitAbis']) : null,
+      supportedAbis: map['supportedAbis'] != null && map['supportedAbis'] is List ? List<String>.from(map['supportedAbis']) : null,
       tags: map['tags']?.toString(),
       type: map['type']?.toString(),
       user: map['user']?.toString(),
@@ -93,7 +93,7 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
       radioVersion: map['radioVersion']?.toString(),
       serialNumber: map['serialNumber']?.toString(),
       isPhysicalDevice: map['isPhysicalDevice'] is bool ? map['isPhysicalDevice'] : map['isPhysicalDevice']?.toString()?.toLowerCase() == 'true',
-      systemFeatures: map['systemFeatures'] != null ? Map<String, dynamic>.from(map['systemFeatures']) : null,
+      systemFeatures: map['systemFeatures'] != null && map['systemFeatures'] is Map ? Map<String, dynamic>.from(map['systemFeatures']) : null,
     );
   }
 
