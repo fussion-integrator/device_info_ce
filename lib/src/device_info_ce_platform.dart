@@ -97,14 +97,14 @@ class MethodChannelDeviceInfoCe extends DeviceInfoCePlatform {
   Stream<BatteryInfo> get batteryStream {
     return const EventChannel('device_info_ce/battery')
         .receiveBroadcastStream()
-        .map((data) => BatteryInfo.fromMap(data.cast<String, dynamic>()));
+        .map((data) => BatteryInfo.fromMap(Map<String, dynamic>.from(data as Map)));
   }
 
   @override
   Stream<PerformanceInfo> get performanceStream {
     return const EventChannel('device_info_ce/performance')
         .receiveBroadcastStream()
-        .map((data) => PerformanceInfo.fromMap(data.cast<String, dynamic>()));
+        .map((data) => PerformanceInfo.fromMap(Map<String, dynamic>.from(data as Map)));
   }
 }
 
