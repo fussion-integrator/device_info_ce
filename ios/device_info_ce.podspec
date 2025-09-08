@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 A comprehensive Flutter plugin to get detailed device information without external dependencies.
                        DESC
-  s.homepage         = 'https://github.com/cedeh/device_info_ce'
+  s.homepage         = 'https://github.com/fussion-integrator/device_info_ce'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Cedeh' => 'cedeh@example.com' }
   s.source           = { :path => '.' }

@@ -1,10 +1,10 @@
 name: device_info_ce
-description: A comprehensive Flutter plugin for retrieving detailed device information including hardware specs, system details, battery status, security analysis, and real-time performance monitoring across Android and iOS platforms.
+description: Flutter plugin for comprehensive device information including hardware specs, battery monitoring, security analysis, and performance metrics.
 version: 1.0.0
-homepage: https://github.com/cedeh/device_info_ce
-repository: https://github.com/cedeh/device_info_ce
-issue_tracker: https://github.com/cedeh/device_info_ce/issues
-documentation: https://github.com/cedeh/device_info_ce/wiki
+homepage: https://github.com/fussion-integrator/device_info_ce
+repository: https://github.com/fussion-integrator/device_info_ce
+issue_tracker: https://github.com/fussion-integrator/device_info_ce/issues
+documentation: https://github.com/fussion-integrator/device_info_ce#readme
 
 topics:
   - device-info
@@ -44,3 +44,4 @@ flutter:
         pluginClass: DeviceInfoCePlugin
       ios:
         pluginClass: DeviceInfoCePlugin
+        sharedDarwinSource: true
