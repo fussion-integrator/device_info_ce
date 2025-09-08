@@ -1,6 +1,11 @@
 import 'device_info.dart';
 
+/// Contains detailed information about an Android device.
+///
+/// This class provides comprehensive device information including hardware
+/// specifications, system details, and device identifiers for Android devices.
 class AndroidDeviceInfo extends BaseDeviceInfo {
+  /// The Android ID of the device.
   final String? androidId;
   final String? bootloader;
   final String? brand;
@@ -10,7 +15,9 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
   final String? hardware;
   final String? host;
   final String? id;
+  /// The manufacturer of the device.
   final String? manufacturer;
+  /// The model name of the device.
   final String? model;
   final String? product;
   final List<String>? supported32BitAbis;
@@ -22,6 +29,7 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
   final String? codename;
   final String? incremental;
   final String? release;
+  /// The Android SDK version number.
   final int? sdkInt;
   final String? securityPatch;
   final int? previewSdkInt;
@@ -31,6 +39,7 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
   final bool? isPhysicalDevice;
   final Map<String, dynamic>? systemFeatures;
 
+  /// Creates an instance of [AndroidDeviceInfo].
   const AndroidDeviceInfo({
     this.androidId,
     this.bootloader,
@@ -63,6 +72,7 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
     this.systemFeatures,
   });
 
+  /// Creates an [AndroidDeviceInfo] instance from a map.
   factory AndroidDeviceInfo.fromMap(Map<String, dynamic> map) {
     return AndroidDeviceInfo(
       androidId: map['androidId']?.toString(),

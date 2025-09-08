@@ -1,6 +1,13 @@
+/// Contains device security information and analysis.
+///
+/// Provides security-related data including device encryption status,
+/// biometric capabilities, and security threat detection.
 class SecurityInfo {
+  /// Whether the device has security measures enabled.
   final bool? isDeviceSecure;
+  /// Whether the device is jailbroken (iOS).
   final bool? isJailbroken;
+  /// Whether the device is rooted (Android).
   final bool? isRooted;
   final List<String>? biometricTypes;
   final String? lockScreenType;
@@ -12,6 +19,7 @@ class SecurityInfo {
   final String? securityPatchLevel;
   final bool? isPlayProtectEnabled;
 
+  /// Creates an instance of [SecurityInfo].
   const SecurityInfo({
     this.isDeviceSecure,
     this.isJailbroken,
@@ -27,6 +35,7 @@ class SecurityInfo {
     this.isPlayProtectEnabled,
   });
 
+  /// Creates a [SecurityInfo] instance from a map.
   factory SecurityInfo.fromMap(Map<String, dynamic> map) {
     return SecurityInfo(
       isDeviceSecure: map['isDeviceSecure'],

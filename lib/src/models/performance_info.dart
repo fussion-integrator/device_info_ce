@@ -1,5 +1,11 @@
+/// Contains device performance metrics and monitoring data.
+///
+/// Provides real-time performance information including CPU usage,
+/// memory consumption, and thermal state.
 class PerformanceInfo {
+  /// Current CPU usage as a percentage (0.0 to 1.0).
   final double? cpuUsage;
+  /// Current memory usage as a percentage (0.0 to 1.0).
   final double? memoryUsage;
   final int? totalMemory;
   final int? availableMemory;
@@ -12,6 +18,7 @@ class PerformanceInfo {
   final double? diskUsage;
   final double? networkUsage;
 
+  /// Creates an instance of [PerformanceInfo].
   const PerformanceInfo({
     this.cpuUsage,
     this.memoryUsage,
@@ -27,6 +34,7 @@ class PerformanceInfo {
     this.networkUsage,
   });
 
+  /// Creates a [PerformanceInfo] instance from a map.
   factory PerformanceInfo.fromMap(Map<String, dynamic> map) {
     return PerformanceInfo(
       cpuUsage: map['cpuUsage']?.toDouble(),

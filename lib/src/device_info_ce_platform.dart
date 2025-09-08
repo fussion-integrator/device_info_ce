@@ -110,9 +110,19 @@ class MethodChannelDeviceInfoCe extends DeviceInfoCePlatform {
   }
 }
 
+/// Main class for accessing device information across platforms.
+///
+/// Provides static methods to retrieve device information, battery status,
+/// security details, and performance metrics for both Android and iOS devices.
 class DeviceInfoCe {
   static final DeviceInfoCePlatform _platform = DeviceInfoCePlatform.instance;
 
+  /// Gets Android device information.
+  ///
+  /// Returns detailed information about the Android device including
+  /// hardware specifications and system details.
+  /// 
+  /// Throws [UnsupportedError] if called on non-Android platforms.
   static Future<AndroidDeviceInfo> androidInfo() {
     if (!Platform.isAndroid) {
       throw UnsupportedError('This method is only supported on Android');
@@ -120,6 +130,12 @@ class DeviceInfoCe {
     return _platform.androidInfo();
   }
 
+  /// Gets iOS device information.
+  ///
+  /// Returns detailed information about the iOS device including
+  /// hardware specifications and system details.
+  /// 
+  /// Throws [UnsupportedError] if called on non-iOS platforms.
   static Future<IosDeviceInfo> iosInfo() {
     if (!Platform.isIOS) {
       throw UnsupportedError('This method is only supported on iOS');
@@ -136,6 +152,10 @@ class DeviceInfoCe {
     throw UnsupportedError('Platform not supported');
   }
 
+  /// Gets current battery information.
+  ///
+  /// Returns real-time battery data including level, charging status,
+  /// health, and temperature.
   static Future<BatteryInfo> batteryInfo() {
     return _platform.batteryInfo();
   }
@@ -152,6 +172,9 @@ class DeviceInfoCe {
     return _platform.performanceInfo();
   }
 
+  /// Stream of real-time battery information updates.
+  ///
+  /// Provides continuous battery monitoring with live updates.
   static Stream<BatteryInfo> get batteryStream {
     return _platform.batteryStream;
   }

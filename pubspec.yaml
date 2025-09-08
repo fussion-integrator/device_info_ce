@@ -1,6 +1,6 @@
 name: device_info_ce
 description: Flutter plugin for comprehensive device information including hardware specs, battery monitoring, security analysis, and performance metrics.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/fussion-integrator/device_info_ce
 repository: https://github.com/fussion-integrator/device_info_ce
 issue_tracker: https://github.com/fussion-integrator/device_info_ce/issues

@@ -1,3 +1,8 @@
+/// A comprehensive Flutter plugin for retrieving detailed device information.
+///
+/// This library provides access to device hardware specifications, system details,
+/// battery status, security analysis, and real-time performance monitoring
+/// across Android and iOS platforms.
 library device_info_ce;
 
 export 'src/device_info_ce_platform.dart';

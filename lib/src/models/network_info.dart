@@ -1,5 +1,11 @@
+/// Contains network connectivity information.
+///
+/// Provides details about the device's network connection including
+/// connection type, carrier information, and signal strength.
 class NetworkInfo {
+  /// Type of network connection (WiFi, Cellular, etc.).
   final String? connectionType;
+  /// Name of the mobile carrier.
   final String? carrierName;
   final String? networkOperator;
   final int? signalStrength;
@@ -14,6 +20,7 @@ class NetworkInfo {
   final double? uploadSpeed;
   final int? ping;
 
+  /// Creates an instance of [NetworkInfo].
   const NetworkInfo({
     this.connectionType,
     this.carrierName,
@@ -31,6 +38,7 @@ class NetworkInfo {
     this.ping,
   });
 
+  /// Creates a [NetworkInfo] instance from a map.
   factory NetworkInfo.fromMap(Map<String, dynamic> map) {
     return NetworkInfo(
       connectionType: map['connectionType'],
