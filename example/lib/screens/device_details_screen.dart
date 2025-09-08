@@ -110,14 +110,15 @@ class DeviceDetailsScreen extends StatelessWidget {
     return widgets;
   }
 
-  Widget _buildSection(BuildContext context, String title, Map<String, dynamic> data) {
+  Widget _buildSection(
+      BuildContext context, String title, Map<String, dynamic> data) {
     return Card(
       child: ExpansionTile(
         title: Text(
           title,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
+                fontWeight: FontWeight.bold,
+              ),
         ),
         leading: _getSectionIcon(title),
         children: [
@@ -145,8 +146,8 @@ class DeviceDetailsScreen extends StatelessWidget {
             child: Text(
               DeviceInfoFormatter.formatKey(key),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
-              ),
+                    fontWeight: FontWeight.w500,
+                  ),
             ),
           ),
           Expanded(
@@ -154,8 +155,8 @@ class DeviceDetailsScreen extends StatelessWidget {
             child: SelectableText(
               DeviceInfoFormatter.formatValue(value),
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontFamily: 'monospace',
-              ),
+                    fontFamily: 'monospace',
+                  ),
             ),
           ),
         ],
@@ -188,7 +189,7 @@ class DeviceDetailsScreen extends StatelessWidget {
 
   void _shareDeviceInfo() {
     if (deviceInfo == null) return;
-    
+
     final info = DeviceInfoFormatter.formatForSharing(deviceInfo!);
     Share.share(info, subject: 'Device Information');
   }

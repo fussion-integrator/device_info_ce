@@ -116,8 +116,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Text(
                 'Device Dashboard',
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ),
             background: Container(

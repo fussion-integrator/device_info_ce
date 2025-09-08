@@ -19,8 +19,8 @@ class NetworkScreen extends StatelessWidget {
             child: Text(
               'Network Information',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           const SizedBox(height: 24),
@@ -64,9 +64,15 @@ class NetworkScreen extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
-            colors: isConnected 
-                ? [AppTheme.successColor.withOpacity(0.1), AppTheme.successColor.withOpacity(0.05)]
-                : [AppTheme.errorColor.withOpacity(0.1), AppTheme.errorColor.withOpacity(0.05)],
+            colors: isConnected
+                ? [
+                    AppTheme.successColor.withOpacity(0.1),
+                    AppTheme.successColor.withOpacity(0.05)
+                  ]
+                : [
+                    AppTheme.errorColor.withOpacity(0.1),
+                    AppTheme.errorColor.withOpacity(0.05)
+                  ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -82,15 +88,19 @@ class NetworkScreen extends StatelessWidget {
             Text(
               connectionType,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: isConnected ? AppTheme.successColor : AppTheme.errorColor,
-              ),
+                    fontWeight: FontWeight.bold,
+                    color: isConnected
+                        ? AppTheme.successColor
+                        : AppTheme.errorColor,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               isConnected ? 'Connected' : 'Disconnected',
               style: TextStyle(
-                color: (isConnected ? AppTheme.successColor : AppTheme.errorColor).withOpacity(0.8),
+                color:
+                    (isConnected ? AppTheme.successColor : AppTheme.errorColor)
+                        .withOpacity(0.8),
               ),
             ),
           ],
@@ -109,17 +119,20 @@ class NetworkScreen extends StatelessWidget {
             Text(
               'Network Details',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             _buildDetailRow('Carrier', networkInfo?.carrierName ?? 'Unknown'),
-            _buildDetailRow('Network Operator', networkInfo?.networkOperator ?? 'Unknown'),
+            _buildDetailRow(
+                'Network Operator', networkInfo?.networkOperator ?? 'Unknown'),
             _buildDetailRow('IP Address', networkInfo?.ipAddress ?? 'Unknown'),
             if (networkInfo?.wifiSSID != null)
               _buildDetailRow('WiFi Network', networkInfo!.wifiSSID!),
-            _buildDetailRow('Signal Strength', '${networkInfo?.signalStrength ?? 0} dBm'),
-            _buildDetailRow('Roaming', networkInfo?.isRoaming == true ? 'Yes' : 'No'),
+            _buildDetailRow(
+                'Signal Strength', '${networkInfo?.signalStrength ?? 0} dBm'),
+            _buildDetailRow(
+                'Roaming', networkInfo?.isRoaming == true ? 'Yes' : 'No'),
           ],
         ),
       ),
@@ -158,8 +171,8 @@ class NetworkScreen extends StatelessWidget {
             Text(
               'Connection Speed',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             Row(
@@ -191,7 +204,8 @@ class NetworkScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSpeedCard(String label, double speed, IconData icon, Color color) {
+  Widget _buildSpeedCard(
+      String label, double speed, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -263,8 +277,8 @@ class NetworkScreen extends StatelessWidget {
             Text(
               'Security & Privacy',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             _buildSecurityItem(

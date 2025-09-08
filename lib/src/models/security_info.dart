@@ -32,13 +32,17 @@ class SecurityInfo {
       isDeviceSecure: map['isDeviceSecure'],
       isJailbroken: map['isJailbroken'],
       isRooted: map['isRooted'],
-      biometricTypes: map['biometricTypes'] != null ? List<String>.from(map['biometricTypes']) : null,
+      biometricTypes: map['biometricTypes'] != null
+          ? List<String>.from(map['biometricTypes'])
+          : null,
       lockScreenType: map['lockScreenType'],
       isEncrypted: map['isEncrypted'],
       isDeveloperModeEnabled: map['isDeveloperModeEnabled'],
       isDebuggingEnabled: map['isDebuggingEnabled'],
       isMockLocationEnabled: map['isMockLocationEnabled'],
-      installedSecurityApps: map['installedSecurityApps'] != null ? List<String>.from(map['installedSecurityApps']) : null,
+      installedSecurityApps: map['installedSecurityApps'] != null
+          ? List<String>.from(map['installedSecurityApps'])
+          : null,
       securityPatchLevel: map['securityPatchLevel'],
       isPlayProtectEnabled: map['isPlayProtectEnabled'],
     );

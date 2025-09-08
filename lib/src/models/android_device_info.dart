@@ -77,23 +77,41 @@ class AndroidDeviceInfo extends BaseDeviceInfo {
       manufacturer: map['manufacturer']?.toString(),
       model: map['model']?.toString(),
       product: map['product']?.toString(),
-      supported32BitAbis: map['supported32BitAbis'] != null && map['supported32BitAbis'] is List ? List<String>.from(map['supported32BitAbis']) : null,
-      supported64BitAbis: map['supported64BitAbis'] != null && map['supported64BitAbis'] is List ? List<String>.from(map['supported64BitAbis']) : null,
-      supportedAbis: map['supportedAbis'] != null && map['supportedAbis'] is List ? List<String>.from(map['supportedAbis']) : null,
+      supported32BitAbis:
+          map['supported32BitAbis'] != null && map['supported32BitAbis'] is List
+              ? List<String>.from(map['supported32BitAbis'])
+              : null,
+      supported64BitAbis:
+          map['supported64BitAbis'] != null && map['supported64BitAbis'] is List
+              ? List<String>.from(map['supported64BitAbis'])
+              : null,
+      supportedAbis:
+          map['supportedAbis'] != null && map['supportedAbis'] is List
+              ? List<String>.from(map['supportedAbis'])
+              : null,
       tags: map['tags']?.toString(),
       type: map['type']?.toString(),
       user: map['user']?.toString(),
       codename: map['codename']?.toString(),
       incremental: map['incremental']?.toString(),
       release: map['release']?.toString(),
-      sdkInt: map['sdkInt'] is int ? map['sdkInt'] : int.tryParse(map['sdkInt']?.toString() ?? ''),
+      sdkInt: map['sdkInt'] is int
+          ? map['sdkInt']
+          : int.tryParse(map['sdkInt']?.toString() ?? ''),
       securityPatch: map['securityPatch']?.toString(),
-      previewSdkInt: map['previewSdkInt'] is int ? map['previewSdkInt'] : int.tryParse(map['previewSdkInt']?.toString() ?? ''),
+      previewSdkInt: map['previewSdkInt'] is int
+          ? map['previewSdkInt']
+          : int.tryParse(map['previewSdkInt']?.toString() ?? ''),
       board: map['board']?.toString(),
       radioVersion: map['radioVersion']?.toString(),
       serialNumber: map['serialNumber']?.toString(),
-      isPhysicalDevice: map['isPhysicalDevice'] is bool ? map['isPhysicalDevice'] : map['isPhysicalDevice']?.toString()?.toLowerCase() == 'true',
-      systemFeatures: map['systemFeatures'] != null && map['systemFeatures'] is Map ? Map<String, dynamic>.from(map['systemFeatures']) : null,
+      isPhysicalDevice: map['isPhysicalDevice'] is bool
+          ? map['isPhysicalDevice']
+          : (map['isPhysicalDevice']?.toString().toLowerCase() == 'true'),
+      systemFeatures:
+          map['systemFeatures'] != null && map['systemFeatures'] is Map
+              ? Map<String, dynamic>.from(map['systemFeatures'])
+              : null,
     );
   }
 

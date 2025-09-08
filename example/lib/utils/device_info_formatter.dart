@@ -1,5 +1,6 @@
 class DeviceInfoFormatter {
-  static Map<String, Map<String, dynamic>> categorizeDeviceInfo(Map<String, dynamic> deviceInfo) {
+  static Map<String, Map<String, dynamic>> categorizeDeviceInfo(
+      Map<String, dynamic> deviceInfo) {
     final categories = <String, Map<String, dynamic>>{
       'Device Identity': {},
       'Hardware': {},
@@ -19,13 +20,13 @@ class DeviceInfoFormatter {
 
     // Remove empty categories
     categories.removeWhere((key, value) => value.isEmpty);
-    
+
     return categories;
   }
 
   static String _getCategoryForKey(String key) {
     final lowerKey = key.toLowerCase();
-    
+
     if (_isIdentityKey(lowerKey)) return 'Device Identity';
     if (_isHardwareKey(lowerKey)) return 'Hardware';
     if (_isSystemKey(lowerKey)) return 'System';
@@ -34,85 +35,117 @@ class DeviceInfoFormatter {
     if (_isBatteryKey(lowerKey)) return 'Battery';
     if (_isCpuKey(lowerKey)) return 'CPU';
     if (_isNetworkKey(lowerKey)) return 'Network';
-    
+
     return 'Other';
   }
 
   static bool _isIdentityKey(String key) {
-    return key.contains('id') || key.contains('serial') || key.contains('fingerprint') || 
-           key.contains('vendor') || key.contains('uuid');
+    return key.contains('id') ||
+        key.contains('serial') ||
+        key.contains('fingerprint') ||
+        key.contains('vendor') ||
+        key.contains('uuid');
   }
 
   static bool _isHardwareKey(String key) {
-    return key.contains('manufacturer') || key.contains('brand') || key.contains('model') || 
-           key.contains('device') || key.contains('board') || key.contains('hardware') || 
-           key.contains('machine');
+    return key.contains('manufacturer') ||
+        key.contains('brand') ||
+        key.contains('model') ||
+        key.contains('device') ||
+        key.contains('board') ||
+        key.contains('hardware') ||
+        key.contains('machine');
   }
 
   static bool _isSystemKey(String key) {
-    return key.contains('system') || key.contains('version') || key.contains('release') || 
-           key.contains('sdk') || key.contains('api') || key.contains('patch') || 
-           key.contains('codename') || key.contains('incremental');
+    return key.contains('system') ||
+        key.contains('version') ||
+        key.contains('release') ||
+        key.contains('sdk') ||
+        key.contains('api') ||
+        key.contains('patch') ||
+        key.contains('codename') ||
+        key.contains('incremental');
   }
 
   static bool _isDisplayKey(String key) {
-    return key.contains('width') || key.contains('height') || key.contains('scale') || 
-           key.contains('pixel') || key.contains('brightness') || key.contains('screen');
+    return key.contains('width') ||
+        key.contains('height') ||
+        key.contains('scale') ||
+        key.contains('pixel') ||
+        key.contains('brightness') ||
+        key.contains('screen');
   }
 
   static bool _isMemoryKey(String key) {
-    return key.contains('memory') || key.contains('storage') || key.contains('space') || 
-           key.contains('ram');
+    return key.contains('memory') ||
+        key.contains('storage') ||
+        key.contains('space') ||
+        key.contains('ram');
   }
 
   static bool _isBatteryKey(String key) {
-    return key.contains('battery') || key.contains('level') || key.contains('charging');
+    return key.contains('battery') ||
+        key.contains('level') ||
+        key.contains('charging');
   }
 
   static bool _isCpuKey(String key) {
-    return key.contains('cpu') || key.contains('core') || key.contains('frequency') || 
-           key.contains('architecture') || key.contains('abi');
+    return key.contains('cpu') ||
+        key.contains('core') ||
+        key.contains('frequency') ||
+        key.contains('architecture') ||
+        key.contains('abi');
   }
 
   static bool _isNetworkKey(String key) {
-    return key.contains('network') || key.contains('operator') || key.contains('carrier') || 
-           key.contains('sim');
+    return key.contains('network') ||
+        key.contains('operator') ||
+        key.contains('carrier') ||
+        key.contains('sim');
   }
 
   static String formatKey(String key) {
-    return key.replaceAllMapped(
-      RegExp(r'([A-Z])'),
-      (match) => ' ${match.group(1)}',
-    ).split(' ').map((word) => 
-      word.isEmpty ? '' : word[0].toUpperCase() + word.substring(1)
-    ).join(' ');
+    return key
+        .replaceAllMapped(
+          RegExp(r'([A-Z])'),
+          (match) => ' ${match.group(1)}',
+        )
+        .split(' ')
+        .map((word) =>
+            word.isEmpty ? '' : word[0].toUpperCase() + word.substring(1))
+        .join(' ');
   }
 
   static String formatValue(dynamic value) {
     if (value == null) return 'N/A';
-    
+
     if (value is List) {
       return value.join(', ');
     }
-    
+
     if (value is bool) {
       return value ? 'Yes' : 'No';
     }
-    
+
     if (value is num) {
-      if (value is double && (value > 1000000 || value.toString().contains('memory') || value.toString().contains('space'))) {
+      if (value is double &&
+          (value > 1000000 ||
+              value.toString().contains('memory') ||
+              value.toString().contains('space'))) {
         return formatBytes(value.toInt());
       }
       return value.toString();
     }
-    
+
     return value.toString();
   }
 
   static String formatBytes(int bytes) {
     if (bytes < 1024) return '$bytes B';
     if (bytes < 1024 * 1024) return '${(bytes / 1024).toStringAsFixed(1)} KB';
-    if (bytes < 1024 * 1024 * 1024) return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
+    if (bytes < 1024 * 1024 * 1024)
+      return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
     return '${(bytes / (1024 * 1024 * 1024)).toStringAsFixed(1)} GB';
   }
 
@@ -123,15 +156,15 @@ class DeviceInfoFormatter {
     buffer.writeln();
 
     final categories = categorizeDeviceInfo(deviceInfo);
-    
+
     for (final category in categories.entries) {
       buffer.writeln('📋 ${category.key}');
       buffer.writeln('-' * 20);
-      
+
       for (final item in category.value.entries) {
         buffer.writeln('${formatKey(item.key)}: ${formatValue(item.value)}');
       }
-      
+
       buffer.writeln();
     }
 

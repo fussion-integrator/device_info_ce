@@ -6,7 +6,6 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 class MockDeviceInfoCePlatform
     with MockPlatformInterfaceMixin
     implements DeviceInfoCePlatform {
-  
   @override
   Future<AndroidDeviceInfo> androidInfo() async {
     return AndroidDeviceInfo.fromMap({
@@ -107,14 +106,16 @@ void main() {
     });
 
     test('androidInfo returns correct data', () async {
-      final platform = DeviceInfoCePlatform.instance as MockDeviceInfoCePlatform;
+      final platform =
+          DeviceInfoCePlatform.instance as MockDeviceInfoCePlatform;
       final info = await platform.androidInfo();
       expect(info.manufacturer, 'TestManufacturer');
       expect(info.model, 'TestModel');
     });
 
     test('iosInfo returns correct data', () async {
-      final platform = DeviceInfoCePlatform.instance as MockDeviceInfoCePlatform;
+      final platform =
+          DeviceInfoCePlatform.instance as MockDeviceInfoCePlatform;
       final info = await platform.iosInfo();
       expect(info.name, 'Test iPhone');
       expect(info.systemName, 'iOS');

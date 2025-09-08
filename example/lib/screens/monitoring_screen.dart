@@ -25,13 +25,13 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
   final List<FlSpot> _cpuData = [];
   final List<FlSpot> _memoryData = [];
   int _dataPoints = 0;
-  
+
   // Current values for display
   double _currentBattery = 85.0;
   double _currentCpu = 25.0;
   double _currentMemory = 60.0;
   double _currentTemp = 35.0;
-  
+
   // Random generators for realistic data
   final _random = Random();
   Timer? _timer;
@@ -42,13 +42,13 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
     _initializeData();
     _startRealTimeMonitoring();
   }
-  
+
   @override
   void dispose() {
     _timer?.cancel();
     super.dispose();
   }
-  
+
   void _initializeData() {
     // Initialize with current values
     _currentBattery = (widget.batteryInfo?.level ?? 0.85) * 100;
@@ -64,17 +64,17 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
       }
     });
   }
-  
+
   void _updateData() {
     setState(() {
       _dataPoints++;
-      
+
       // Generate realistic fluctuations
       _currentBattery = _generateRealisticValue(_currentBattery, 100, 0, 0.1);
       _currentCpu = _generateRealisticValue(_currentCpu, 100, 5, 5.0);
       _currentMemory = _generateRealisticValue(_currentMemory, 95, 30, 2.0);
       _currentTemp = _generateRealisticValue(_currentTemp, 45, 25, 1.0);
-      
+
       // Add to chart data
       _batteryData.add(FlSpot(_dataPoints.toDouble(), _currentBattery));
       _cpuData.add(FlSpot(_dataPoints.toDouble(), _currentCpu));
@@ -85,7 +85,7 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
         _batteryData.removeAt(0);
         _cpuData.removeAt(0);
         _memoryData.removeAt(0);
-        
+
         // Adjust x-axis values
         for (int i = 0; i < _batteryData.length; i++) {
           _batteryData[i] = FlSpot(i.toDouble(), _batteryData[i].y);
@@ -95,49 +95,50 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
       }
     });
   }
-  
-  double _generateRealisticValue(double current, double max, double min, double volatility) {
+
+  double _generateRealisticValue(
+      double current, double max, double min, double volatility) {
     // Generate realistic fluctuations with some randomness
     double change = (_random.nextDouble() - 0.5) * volatility;
     double newValue = current + change;
-    
+
     // Keep within bounds
     newValue = newValue.clamp(min, max);
-    
+
     // Add some trending behavior
     if (_random.nextDouble() < 0.1) {
       // Occasional larger changes
       change = (_random.nextDouble() - 0.5) * volatility * 3;
       newValue = (current + change).clamp(min, max);
     }
-    
+
     return newValue;
   }
-  
+
   Color _getTempColor(double temp) {
     if (temp > 40) return AppTheme.errorColor;
     if (temp > 35) return AppTheme.warningColor;
     return AppTheme.successColor;
   }
-  
+
   Color _getCpuColor(double cpu) {
     if (cpu > 80) return AppTheme.errorColor;
     if (cpu > 50) return AppTheme.warningColor;
     return AppTheme.primaryColor;
   }
-  
+
   Color _getMemoryColor(double memory) {
     if (memory > 85) return AppTheme.errorColor;
     if (memory > 70) return AppTheme.warningColor;
     return AppTheme.accentColor;
   }
-  
+
   Color _getBatteryColor(double battery) {
     if (battery < 20) return AppTheme.errorColor;
     if (battery < 50) return AppTheme.warningColor;
     return AppTheme.successColor;
   }
-  
+
   String _getCurrentValue(String title) {
     switch (title) {
       case 'Battery Level':
@@ -162,8 +163,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
             child: Text(
               'Real-time Monitoring',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           const SizedBox(height: 24),
@@ -212,7 +213,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
     );
   }
 
-  Widget _buildChartCard(String title, List<FlSpot> data, Color color, String unit) {
+  Widget _buildChartCard(
+      String title, List<FlSpot> data, Color color, String unit) {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -223,8 +225,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
             Text(
               title,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 12),
             SizedBox(
@@ -275,8 +277,10 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
                             borderData: FlBorderData(
                               show: true,
                               border: Border(
-                                left: BorderSide(color: Colors.grey.withOpacity(0.3)),
-                                bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
+                                left: BorderSide(
+                                    color: Colors.grey.withOpacity(0.3)),
+                                bottom: BorderSide(
+                                    color: Colors.grey.withOpacity(0.3)),
                               ),
                             ),
                             lineBarsData: [
@@ -298,7 +302,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
                           top: 8,
                           right: 8,
                           child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 8, vertical: 4),
                             decoration: BoxDecoration(
                               color: color.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(12),
@@ -334,8 +339,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
             Text(
               'Current Stats',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 12),
             GridView.count(
@@ -378,7 +383,8 @@ class _MonitoringScreenState extends State<MonitoringScreen> {
     );
   }
 
-  Widget _buildStatItem(String label, String value, IconData icon, Color color) {
+  Widget _buildStatItem(
+      String label, String value, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(

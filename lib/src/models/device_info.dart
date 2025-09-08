@@ -1,6 +1,6 @@
 abstract class BaseDeviceInfo {
   const BaseDeviceInfo();
-  
+
   Map<String, dynamic> toMap();
 }
 

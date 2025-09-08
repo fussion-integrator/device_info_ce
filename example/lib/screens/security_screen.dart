@@ -19,8 +19,8 @@ class SecurityScreen extends StatelessWidget {
             child: Text(
               'Security Analysis',
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           const SizedBox(height: 24),
@@ -74,8 +74,8 @@ class SecurityScreen extends StatelessWidget {
             Text(
               'Security Score',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             Stack(
@@ -138,7 +138,8 @@ class SecurityScreen extends StatelessWidget {
       ),
       SecurityCheck(
         'Root/Jailbreak',
-        !(securityInfo?.isRooted ?? false) && !(securityInfo?.isJailbroken ?? false),
+        !(securityInfo?.isRooted ?? false) &&
+            !(securityInfo?.isJailbroken ?? false),
         'Device not modified',
       ),
     ];
@@ -152,8 +153,8 @@ class SecurityScreen extends StatelessWidget {
             Text(
               'Security Checks',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             ...checks.map((check) => _buildCheckItem(check)),
@@ -209,8 +210,8 @@ class SecurityScreen extends StatelessWidget {
             Text(
               'Biometric Authentication',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             if (biometrics.isEmpty)
@@ -245,25 +246,25 @@ class SecurityScreen extends StatelessWidget {
             Text(
               'Security Recommendations',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 16),
             ...recommendations.map((rec) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Icon(
-                    Icons.lightbulb_outline,
-                    color: AppTheme.warningColor,
-                    size: 16,
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.lightbulb_outline,
+                        color: AppTheme.warningColor,
+                        size: 16,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(child: Text(rec)),
+                    ],
                   ),
-                  const SizedBox(width: 8),
-                  Expanded(child: Text(rec)),
-                ],
-              ),
-            )),
+                )),
           ],
         ),
       ),
@@ -272,13 +273,14 @@ class SecurityScreen extends StatelessWidget {
 
   double _calculateSecurityScore() {
     double score = 0;
-    
+
     if (securityInfo?.isEncrypted == true) score += 25;
     if (securityInfo?.lockScreenType != null) score += 20;
     if (!(securityInfo?.isDeveloperModeEnabled ?? false)) score += 15;
-    if (!(securityInfo?.isRooted ?? false) && !(securityInfo?.isJailbroken ?? false)) score += 25;
+    if (!(securityInfo?.isRooted ?? false) &&
+        !(securityInfo?.isJailbroken ?? false)) score += 25;
     if ((securityInfo?.biometricTypes?.isNotEmpty ?? false)) score += 15;
-    
+
     return score;
   }
 
@@ -297,27 +299,29 @@ class SecurityScreen extends StatelessWidget {
 
   List<String> _getSecurityRecommendations() {
     final recommendations = <String>[];
-    
+
     if (!(securityInfo?.isEncrypted ?? false)) {
-      recommendations.add('Enable device encryption for better data protection');
+      recommendations
+          .add('Enable device encryption for better data protection');
     }
-    
+
     if (securityInfo?.lockScreenType == null) {
       recommendations.add('Set up a screen lock (PIN, pattern, or biometric)');
     }
-    
+
     if (securityInfo?.isDeveloperModeEnabled == true) {
       recommendations.add('Disable developer options when not needed');
     }
-    
+
     if (securityInfo?.biometricTypes?.isEmpty ?? true) {
-      recommendations.add('Enable biometric authentication for enhanced security');
+      recommendations
+          .add('Enable biometric authentication for enhanced security');
     }
-    
+
     if (recommendations.isEmpty) {
       recommendations.add('Your device security looks good! Keep it updated.');
     }
-    
+
     return recommendations;
   }
 }
