@@ -1,0 +1,2 @@
+/Users/cedeh/Documents/device_info_ce/example/android/app/.cxx/Debug/6u3826kb/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/cedeh/Documents/device_info_ce/example/android/app/.cxx/Debug/6u3826kb/armeabi-v7a/CMakeFiles/rebuild_cache.dir
