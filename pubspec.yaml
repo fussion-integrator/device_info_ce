@@ -9,11 +9,8 @@ documentation: https://github.com/cedeh/device_info_ce/wiki
 topics:
   - device-info
   - hardware
-  - system-info
   - battery
   - security
-  - performance
-  - monitoring
   - cross-platform
 
 screenshots:
